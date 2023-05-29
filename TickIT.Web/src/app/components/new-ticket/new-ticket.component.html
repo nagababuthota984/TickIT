@@ -4,7 +4,7 @@
         <div class="col-7 new-ticket-form bg-white m-4 p-3">
             <label class="fw-bold my-1">Ticket Name*</label>
             <div class="row mx-1">
-                <input type="text" class="form-control-sm dropdown-filter" placeholder="type here">
+                <input type="text" class="form-control-sm dropdown-filter" placeholder="Please enter a ticket here">
             </div>
             <div class="row justify-content-between mt-3 px-3">
                 <div class="col-6 p-0 pe-3">
@@ -46,7 +46,7 @@
             <div class="row justify-content-between mt-3 px-3">
                 <div class="p-0">
                     <label class="fw-bold my-1">Attachments</label>
-                    <input type="file" class="form-control-sm d-block" >
+                    <input type="file" class="form-control-sm d-block">
                 </div>
             </div>
             <div class="row justify-content-between mt-3 px-3">
@@ -54,8 +54,8 @@
                     <label class="fw-bold my-1">Description</label>
                     <div>
                         <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-                        <ngx-editor [editor]="editor" [placeholder]="'Type here...'"></ngx-editor>
-                      </div>
+                        <ngx-editor [editor]="editor" [placeholder]="'Enter ticket details here...'"></ngx-editor>
+                    </div>
                 </div>
             </div>
             <div class="row justify-content-between mt-3 px-3">

@@ -12,6 +12,7 @@ import { TicketFiltersComponent } from './components/ticket-filters/ticket-filte
 import { TicketsDatagridComponent } from './components/tickets-datagrid/tickets-datagrid.component';
 import { NewTicketComponent } from './components/new-ticket/new-ticket.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { TicketCardComponent } from './components/ticket-card/ticket-card/ticket-card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgxEditorModule } from 'ngx-editor';
     TicketFiltersComponent,
     TicketsDatagridComponent,
     NewTicketComponent,
+    TicketCardComponent,
   ],
   imports: [
     BrowserModule,

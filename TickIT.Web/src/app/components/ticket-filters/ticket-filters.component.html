@@ -1,6 +1,7 @@
 <div class="row ms-1 my-3">
-    <div class="col-2 p-0 "><input type="search" (input)="onTextChanged($event)" class="dropdown-filter form-control-sm"
-            placeholder="Search By ID"></div>
+    <div class="col-2 p-0 ">
+        <input type="search" (input)="onTextChanged($event)" class="dropdown-filter form-control-sm" placeholder="Search By ID">
+    </div>
     <div class="col-2 ms-2 p-0">
             <span class="me-1">Category</span>
             <select class="form-control-sm dropdown-filter" (change)="onCategorySelectionChanged($event)">
@@ -19,7 +20,5 @@
             <option *ngFor="let priority of priorityOptions">{{priority}}</option>
         </select>
     </div>
-    <div class="col-5">
-
-    </div>
+   
 </div>

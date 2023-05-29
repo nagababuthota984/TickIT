@@ -1,5 +1,5 @@
-<div class="container-fluid ps-1 ">
-    <div class="full-height-div">
+<div class="container-fluid ps-1">
+    <div class="row full-height-div">
         <table class="table p-1 bg-white">
             <thead class="thead">
                 <tr>
@@ -28,7 +28,7 @@
             <p class="m-auto">No tickets found</p>
         </div>
     </div>
-    <div class="float-end pagination mt-2 my-auto">
+    <div class="row float-end pagination mt-2 my-auto">
         <ngb-pagination [(page)]="currentPage" [pageSize]="pageSize" [collectionSize]="tickets.length"></ngb-pagination>
     </div>
 </div>

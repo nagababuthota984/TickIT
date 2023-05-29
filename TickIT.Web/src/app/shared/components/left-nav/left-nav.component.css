@@ -1,8 +1,12 @@
 .nav-button{
     background-color: transparent;
     border: 0;
-    color: #0D6efd;
+    /* color: #2961f6; */
+    color: black;
     text-align: start;
+    font-size: 18px;
+    padding: 20px;
+    font-weight: 500;
 }
 .nav-button:hover{
     background-color: #d6e6fd;

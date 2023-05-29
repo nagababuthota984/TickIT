@@ -1,0 +1,13 @@
+.tkt-card
+{
+    padding : 20px;
+    background-color: #2E8DFD;
+    margin: 0px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.card{
+    width: 360px;
+    margin: 10px;
+}
