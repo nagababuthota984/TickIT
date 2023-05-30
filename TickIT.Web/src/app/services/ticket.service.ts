@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { tick } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 import { FilterDetails } from 'src/models/FilterDetails';
 import { Ticket } from 'src/models/Ticket';
@@ -55,16 +56,20 @@ export class TicketService {
   }
 
   seedTickets() {
-    for (let i = 0; i < 25; i++) {
-      this.tickets.push(new Ticket({
-        id: i.toString(),
-        name: "Ticket " + i,
-        description: "service ticket " + i,
-        category: Math.floor(Math.random() * 3) + 1,
-        priority: Math.floor(Math.random() * 2) + 1,
-        status: Math.floor(Math.random() * 3) + 1,
-        dateCreated: new Date(Math.floor(Math.random() * Date.now())).toLocaleDateString()
-      }))
-    };
+    // for (let i = 0; i < 25; i++) {
+    //   this.tickets.push(new Ticket({
+    //     id: i.toString(),
+    //     name: "Ticket " + i,
+    //     description: "service ticket " + i,
+    //     category: Math.floor(Math.random() * 3) + 1,
+    //     priority: Math.floor(Math.random() * 2) + 1,
+    //     status: Math.floor(Math.random() * 3) + 1,
+    //     dateCreated: new Date(Math.floor(Math.random() * Date.now())).toLocaleDateString()
+    //   }))
+    // };
+  }
+
+  addTicket(ticket: Ticket){
+    this.tickets.push(ticket);
   }
 }

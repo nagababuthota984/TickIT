@@ -2,14 +2,13 @@ import { Category, Priority, Status } from "./enums";
 
 export class Ticket{
     id:string;
-    name:string;
+    name?:string;
     description:string;
     status:Status;
     category:Category;
     priority:Priority;
     dateCreated:string;
 
-    
 constructor(args: any) {
     this.id = args.id;
     this.name = args.name;
@@ -20,3 +19,4 @@ constructor(args: any) {
     this.dateCreated = args.dateCreated;
 }
 }
+

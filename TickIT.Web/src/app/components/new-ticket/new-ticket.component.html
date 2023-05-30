@@ -1,75 +1,84 @@
 <div class="container-fluid p-2 ps-4">
     <h4>New Ticket</h4>
-    <div class="row justify-content-evenly new-ticket-container mx-1 p-0">
-        <div class="col-7 new-ticket-form bg-white m-4 p-3">
-            <label class="fw-bold my-1">Ticket Name*</label>
-            <div class="row mx-1">
-                <input type="text" class="form-control-sm dropdown-filter" placeholder="Please enter a ticket here">
-            </div>
-            <div class="row justify-content-between mt-3 px-3">
-                <div class="col-6 p-0 pe-3">
-                    <label class="fw-bold my-1">Status</label>
-                    <select class="form-control-sm w-100 dropdown-filter">
-                        <option>Status</option>
-                        <option>New</option>
-                        <option>Active</option>
-                        <option>Abandoned</option>
-                        <option>Archived</option>
-                    </select>
+    <form [formGroup]="addTicketForm" (ngSubmit)="onSubmit()">
+        <div class="row justify-content-evenly new-ticket-container mx-1 p-0">
+            <div class="col-7 new-ticket-form bg-white m-4 p-3">
+                <label class="fw-bold my-1">Ticket Name*</label>
+                <div class="row mx-1">
+                    <input formControlName="name" id="name" name="name" type="text" class="form-control-sm dropdown-filter" placeholder="Please enter a ticket here" required>
+                    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="inputbox-error">
+                        <div *ngIf="name?.errors?.['required']">
+                            Name is required.
+                        </div>
+                        <div *ngIf="name?.errors?.['minlength']">
+                            Name must be at least 4 characters long.
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6 p-0 ps-3">
-                    <label class="fw-bold my-1">Priority</label>
-                    <select class="form-control-sm w-100 dropdown-filter">
-                        <option>Priority</option>
-                        <option>Low</option>
-                        <option>Medium</option>
-                        <option>High</option>
-                    </select>
+                <div class="row justify-content-between mt-3 px-3">
+                    <div class="col-6 p-0 pe-3">
+                        <label class="fw-bold my-1">Status</label>
+                        <select class="form-control-sm w-100 dropdown-filter">
+                            <option>Status</option>
+                            <option>New</option>
+                            <option>Active</option>
+                            <option>Abandoned</option>
+                            <option>Archived</option>
+                        </select>
+                    </div>
+                    <div class="col-6 p-0 ps-3">
+                        <label class="fw-bold my-1">Priority</label>
+                        <select class="form-control-sm w-100 dropdown-filter">
+                            <option>Priority</option>
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-between mt-3 px-3">
-                <div class="col-6 p-0 pe-3">
-                    <label class="fw-bold my-1">Category</label>
-                    <select class="form-control-sm w-100 dropdown-filter">
-                        <option>Category</option>
-                        <option>New</option>
-                        <option>Active</option>
-                        <option>Abandoned</option>
-                        <option>Archived</option>
-                    </select>
+                <div class="row justify-content-between mt-3 px-3">
+                    <div class="col-6 p-0 pe-3">
+                        <label class="fw-bold my-1">Category</label>
+                        <select class="form-control-sm w-100 dropdown-filter">
+                            <option>Category</option>
+                            <option>New</option>
+                            <option>Active</option>
+                            <option>Abandoned</option>
+                            <option>Archived</option>
+                        </select>
+                    </div>
+                    <div class="col-6 p-0 ps-3">
+                        <label class="fw-bold my-1">Due Date</label>
+                        <input type="datetime-local" class="form-control-sm d-block w-100 dropdown-filter"/>
+                    </div>
                 </div>
-                <div class="col-6 p-0 ps-3">
-                    <label class="fw-bold my-1">Due Date</label>
-                    <input type="datetime-local" class="form-control-sm d-block w-100 dropdown-filter"/>
+                <div class="row justify-content-between mt-3 px-3">
+                    <div class="p-0">
+                        <label class="fw-bold my-1">Attachments</label>
+                        <input type="file" class="form-control-sm d-block">
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-between mt-3 px-3">
-                <div class="p-0">
-                    <label class="fw-bold my-1">Attachments</label>
-                    <input type="file" class="form-control-sm d-block">
+                <div class="row justify-content-between mt-3 px-3">
+                    <div class="p-0">
+                        <label class="fw-bold my-1">Description</label>
+                        <div>
+                            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                            <ngx-editor [editor]="editor" [placeholder]="'Enter ticket details here...'"></ngx-editor>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-between mt-3 px-3">
-                <div class="p-0">
-                    <label class="fw-bold my-1">Description</label>
-                    <div>
-                        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-                        <ngx-editor [editor]="editor" [placeholder]="'Enter ticket details here...'"></ngx-editor>
+                <div class="row justify-content-between mt-3 px-3">
+                    <div class="col-6 p-0 pe-3">
+                    </div>
+                    <div class="col-6 p-0 ps-3 mt-3">
+                        <button type="submit" class="btn btn-primary float-end ms-3">Submit</button>
+                        <button type="button" (click)="onCancel()" class="btn btn-outline-danger float-end me-3">Cancel</button>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-between mt-3 px-3">
-                <div class="col-6 p-0 pe-3">
-                </div>
-                <div class="col-6 p-0 ps-3 mt-3">
-                    <button type="button" class="btn btn-primary float-end ms-3">Submit</button>
-                    <button type="button" class="btn btn-outline-danger float-end me-3">Cancel</button>
-                </div>
+            <div class="col-4 bg-white m-4 p-3">
+                <h5>Old Tickets</h5>
             </div>
         </div>
-        <div class="col-4 bg-white m-4 p-3">
-            <h5>Old Tickets</h5>
-        </div>
-    </div>
+    </form>
 </div>
-

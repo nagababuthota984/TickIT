@@ -13,4 +13,7 @@
 .dropdown-filter:focus{
     outline: 1px solid rgb(200,200,200);
 }
-    
+
+.inputbox-error{
+    color: red;
+}
