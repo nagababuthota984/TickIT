@@ -39,9 +39,9 @@ export class NewTicketComponent {
   addTicketForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
     description : new FormControl('',[Validators.minLength(3), Validators.maxLength(256)]),
-    status : new FormControl(Status.New),
-    category: new FormControl(Category.Misc),
-    priority: new FormControl(Priority.Low),
+    status : new FormControl(),
+    category: new FormControl(),
+    priority: new FormControl(),
     dueDate :new FormControl(Date.now().toLocaleString())
   });
 
@@ -56,11 +56,11 @@ export class NewTicketComponent {
 
   prepareTicketFromForm(ticket: Ticket) {
     this.newTicket.name = this.addTicketForm.get('name')?.value ?? '';
-    this.newTicket.status = Status[(this.addTicketForm.get('status')?.value ?? "0") as keyof typeof Status];
-    this.newTicket.category = Category[(this.addTicketForm.get('category')?.value ?? "3") as keyof typeof Category];
+    this.newTicket.status = Status[(this.addTicketForm.get('status')?.value ?? "Unassigned") as keyof typeof Status];
+    this.newTicket.category = Category[(this.addTicketForm.get('category')?.value ?? "Misc") as keyof typeof Category];
     this.newTicket.description = this.addTicketForm.get("description")?.value ?? '';
-    this.newTicket.priority = Priority[(this.addTicketForm.get("priority")?.value ?? "0") as keyof typeof Priority];
-    this.newTicket.dateCreated = Date.now().toString();
+    this.newTicket.priority = Priority[(this.addTicketForm.get("priority")?.value ?? "Low") as keyof typeof Priority];
+    this.newTicket.dateCreated = new Date().toDateString();
     this.newTicket.dueDate = this.addTicketForm.get("dueDate")?.value ?? '';
   }
   onCancel(): void {
