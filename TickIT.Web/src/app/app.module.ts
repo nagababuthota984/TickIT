@@ -13,6 +13,7 @@ import { TicketsDatagridComponent } from './components/tickets-datagrid/tickets-
 import { NewTicketComponent } from './components/new-ticket/new-ticket.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { TicketCardComponent } from './components/ticket-card/ticket-card/ticket-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TicketCardComponent } from './components/ticket-card/ticket-card/ticket
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    NgxEditorModule
+    NgxEditorModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Editor } from 'ngx-editor';
-import { FormBuilder, FormGroup , FormControl, Validators  } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TicketService } from 'src/app/services/ticket.service';
 import { Ticket } from 'src/models/Ticket';
@@ -15,51 +15,71 @@ import { StmtModifier } from '@angular/compiler';
 
 export class NewTicketComponent {
   public editor: Editor;
-  constructor(private router:Router, private ticketService: TicketService) {
+  public statusOptions: string[];
+  public categoryOptions: string[];
+  public priorityOptions: string[];
+  constructor(private router: Router, private ticketService: TicketService) {
     this.editor = new Editor();
+    this.statusOptions = Object.keys(Status).filter(key=>isNaN(Number(key))&& key!="All");
+    this.categoryOptions = Object.keys(Category).filter(key=>isNaN(Number(key))&& key!="All");
+    this.priorityOptions = Object.keys(Priority).filter(key=>isNaN(Number(key))&& key!="All");
   }
 
-  addTikcet: Ticket = {
+  newTicket: Ticket = {
     name: "",
     category: Category.All,
-    dateCreated: "",
+    dateCreated: '',
     description: "",
     priority: Priority.All,
     status: Status.All,
-    id: ""
+    id: "",
+    dueDate: ""
   }
 
   addTicketForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-    });
-  
-  onSubmit():void{
-    if(!this.addTicketForm.valid) {
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+    description : new FormControl('',[Validators.minLength(3), Validators.maxLength(256)]),
+    status : new FormControl(Status.New),
+    category: new FormControl(Category.Misc),
+    priority: new FormControl(Priority.Low),
+    dueDate :new FormControl(Date.now().toLocaleString())
+  });
+
+  onSubmit(): void {
+    if (!this.addTicketForm.valid) {
       this.addTicketForm.markAllAsTouched();
     }
-    this.addTikcet.name = this.addTicketForm.get('name')?.value ?? '';
-    this.ticketService.addTicket(this.addTikcet);
-    this.navigateToHome();  
+    this.prepareTicketFromForm(this.newTicket);
+    this.ticketService.addTicket(this.newTicket);
+    this.navigateToHome();
   }
 
-  onCancel(): void{
+  prepareTicketFromForm(ticket: Ticket) {
+    this.newTicket.name = this.addTicketForm.get('name')?.value ?? '';
+    this.newTicket.status = Status[(this.addTicketForm.get('status')?.value ?? "0") as keyof typeof Status];
+    this.newTicket.category = Category[(this.addTicketForm.get('category')?.value ?? "3") as keyof typeof Category];
+    this.newTicket.description = this.addTicketForm.get("description")?.value ?? '';
+    this.newTicket.priority = Priority[(this.addTicketForm.get("priority")?.value ?? "0") as keyof typeof Priority];
+    this.newTicket.dateCreated = Date.now().toString();
+    this.newTicket.dueDate = this.addTicketForm.get("dueDate")?.value ?? '';
+  }
+  onCancel(): void {
     this.addTicketForm.reset();
     this.router.navigate(['/']);
   }
-  
-  ngOnDestroy():void{
+
+  ngOnDestroy(): void {
     this.editor.destroy();
   }
 
-  navigateToHome(): void{
-    if(this.name?.valid)
-    {
-        this.addTicketForm.reset();
-        this.router.navigate(['/']);
+  navigateToHome(): void {
+    if (this.name?.valid) {
+      this.addTicketForm.reset();
+      this.router.navigate(['/']);
     }
   }
 
-  get name() {  
-     return this.addTicketForm.get('name'); 
+  get name() {
+    return this.addTicketForm.get('name');
   }
 }

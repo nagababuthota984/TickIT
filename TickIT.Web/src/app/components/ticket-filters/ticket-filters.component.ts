@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { filter } from 'rxjs';
 import { TicketService } from 'src/app/services/ticket.service';
 import { FilterDetails } from 'src/models/FilterDetails';
 import { Category, Priority, Status } from 'src/models/enums';

@@ -8,6 +8,7 @@ export class Ticket{
     category:Category;
     priority:Priority;
     dateCreated:string;
+    dueDate:string;
 
 constructor(args: any) {
     this.id = args.id;
@@ -17,6 +18,7 @@ constructor(args: any) {
     this.category = args.category;
     this.priority = args.priority;
     this.dateCreated = args.dateCreated;
+    this.dueDate = args.dueDate;
 }
 }
 
