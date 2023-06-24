@@ -1,0 +1,15 @@
+.search-bar {
+    border: 1px solid rgb(240, 233, 233);
+    border-radius: 8px;
+    font-family: 'Arial','Font Awesome 5 Free';
+}
+
+.search-bar:focus {
+    outline: 1px solid rgb(200, 200, 200);
+}
+
+.search-icon{
+    color:gray;
+    position:relative;
+    z-index: 1;
+}

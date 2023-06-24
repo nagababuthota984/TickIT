@@ -1,0 +1,19 @@
+.new-ticket-container{
+    background-color: #f7f7f7;
+    height: 78vh;
+    overflow: hidden;
+}
+.dropdown-filter
+{
+    border: 1px solid rgb(238, 228, 228);
+    border-radius: 8px;
+    height: 40px; 
+    margin-top: 8px;
+}
+.dropdown-filter:focus{
+    outline: 1px solid rgb(200,200,200);
+}
+
+.inputbox-error{
+    color: red;
+}
